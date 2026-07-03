@@ -27,8 +27,35 @@ public class App {
         System.out.print("Enter course name: ");
         String courseName = sc.nextLine();
 
+        System.out.print("Enter letter grade (A, B, C, D, F): ");
+        String letterGrade = sc.nextLine();
+
+        double gradePoints;
+        switch (letterGrade.toUpperCase()) {
+            case "A":
+                gradePoints = 4.0;
+                break;
+            case "B":
+                gradePoints = 3.0;
+                break;
+            case "C":
+                gradePoints = 2.0;
+                break;
+            case "D":
+                gradePoints = 1.0;
+                break;
+            case "F":
+                gradePoints = 0.0;
+                break;
+            default:
+                System.out.println("Invalid grade entered. Defaulting to 0.0 points.");
+                gradePoints = 0.0;
+                break;
+        }
+
         System.out.println();
-        System.out.printf("Hello, %s! Welcome to your grade tracker for %s.%n", studentName, courseName);
+        System.out.printf("Hello, %s!%n", studentName);
+        System.out.printf("Course: %s | Grade: %s | Grade Points: %.1f%n", courseName, letterGrade.toUpperCase(), gradePoints);
 
         sc.close();
     }

@@ -81,6 +81,27 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: If we execute `scanner.close()`, what happens to the underlying standard input stream `System.in`, and can we create a new `Scanner(System.in)` to read more inputs later in the program?
   - *Student Answer*: Closing the scanner terminates/closes the underlying `System.in` stream. We cannot create a new scanner to read from `System.in` again in the same program lifecycle. (Correct)
 
+### Commit 0.4 — Simple GPA Calculator (Arithmetic)
+
+#### Concepts Taught
+- **Data Types**: Diff between `int` (32-bit whole numbers) and `double` (64-bit precision floating-point numbers).
+- **Arithmetic Division**: Handling truncation in integer division (`int / int`) versus floating-point division (`double / int` or `int / double` or casting).
+- **Type Casting**: Widening conversions (automatic) and narrowing conversions (explicit using casting operator).
+- **Control Flow**: Using traditional `switch` statements with `break` to avoid fall-through, and configuring `default` for invalid inputs.
+- **Normalizing Input**: Converting inputs to uppercase using `.toUpperCase()` to simplify case checks and comply with the DRY principle.
+
+#### Pre-Quiz
+- **Question 1**: In Java, what does the expression `11 / 4` evaluate to? What are two different ways you can write this expression to evaluate to `2.75`?
+  - *Student Answer*: `2`. Ways to get `2.75`: `(double) 11 / 4` or `11 / (double) 4`. (Correct)
+- **Question 2**: What is "fall-through" behavior in a traditional Java `switch` statement, and how do you prevent it?
+  - *Student Answer*: When a case matches but there is no `break` statement, it falls through to execute subsequent cases regardless of matches. You prevent it by adding a `break` statement to every case block. (Correct)
+
+#### Post-Quiz
+- **Question 1**: Why is using `.toUpperCase()` on `letterGrade` inside the `switch` statement expression preferred over checking both uppercase and lowercase cases (e.g., `case "a": case "A":`)?
+  - *Student Answer*: It normalizes user input to uppercase, avoiding duplicate checks and adhering to the DRY principle. (Correct)
+- **Question 2**: What value does `gradePoints` receive if the user inputs `"B"`? What value does it receive if the user inputs `"E"`?
+  - *Student Answer*: `"B"` results in `3.0`, and `"E"` results in `0.0` due to the `default` case. (Correct)
+
 ---
 
 ## Phase 1: Object-Oriented Foundations — The Core Domain Model
