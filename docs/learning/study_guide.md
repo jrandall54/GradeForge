@@ -60,6 +60,27 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: When you run `./gradlew build`, Gradle executes a task that runs the main method of our class and captures its stdout inside the test suite. If we want to execute our program's main class directly from the command line after compilation, what is the standard Java command to do so?
   - *Student Answer*: Running compiled class files requires compiling to the classpath (`-cp`) and running with the fully qualified class name: `java -cp build/classes/java/main gradeforge.App` (Alternatively, running the single source file directly: `java src/main/java/gradeforge/App.java`). (Correct)
 
+### Commit 0.3 — User Input with Scanner
+
+#### Concepts Taught
+- **Reading Input with Scanner**: Using `java.util.Scanner` to read tokens and lines from the standard input stream `System.in`.
+- **Parsing Tokens vs. Lines**: Using `next()` for single words, `nextLine()` for complete sentences/lines, and numeric methods like `nextInt()` and `nextDouble()`.
+- **The Newline Buffer Issue**: Handling the remaining `\n` left in the input stream after reading primitive values before reading a subsequent line.
+- **Resource Management**: Closing standard resources such as scanners, while noting that closing `System.in` prevents future input reading.
+- **Mocking standard streams in Unit Tests**: Using `System.setIn` with a `ByteArrayInputStream` to programmatically simulate keyboard input in automated tests.
+
+#### Pre-Quiz
+- **Question 1**: What input stream does `System.in` represent, and what is the syntax to create a new `Scanner` instance that reads from it?
+  - *Student Answer*: `System.in` represents the standard `InputStream`. The syntax to create a new scanner is: `Scanner sc = new Scanner(System.in);` (Correct)
+- **Question 2**: If you execute a numeric scanner call followed by a line scanner call without consuming the trailing newline, what happens?
+  - *Student Answer*: The newline character left in the input buffer by the numeric read is immediately consumed by the subsequent line read, returning an empty string. (Correct)
+
+#### Post-Quiz
+- **Question 1**: What package is the `Scanner` class a member of, and what is the syntax used to make it accessible to our class?
+  - *Student Answer*: It is in the `java.util` package, and we write `import java.util.Scanner;` to make it accessible. (Correct)
+- **Question 2**: If we execute `scanner.close()`, what happens to the underlying standard input stream `System.in`, and can we create a new `Scanner(System.in)` to read more inputs later in the program?
+  - *Student Answer*: Closing the scanner terminates/closes the underlying `System.in` stream. We cannot create a new scanner to read from `System.in` again in the same program lifecycle. (Correct)
+
 ---
 
 ## Phase 1: Object-Oriented Foundations — The Core Domain Model
