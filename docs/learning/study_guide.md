@@ -157,7 +157,28 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 
 ## Phase 1: Object-Oriented Foundations — The Core Domain Model
 
-*Entries will be added as you progress through Phase 1 commits.*
+### Commit 1.1 — Create the Course Class
+
+#### Concepts Taught
+- **Class Blueprinting**: Defining the structure and behavior of a domain entity using a Java class (`Course`).
+- **Encapsulation**: Enforcing boundaries on data fields by using the `private` access modifier.
+- **State Initialization**: Declaring parameterized constructors to build complete, valid objects and resolving naming collisions with the `this` keyword.
+- **Accessor Methods**: Exposing read-only state using getter methods.
+- **Immutability**: Omitting setter methods to make instances safe from state modification after creation.
+
+#### Pre-Quiz
+- **Question 1**: Write a parameterized constructor for a class named `Book` that resolves naming collisions using the `this` keyword.
+  - *Student Answer*: `public Book(String title, int pages) { this.title = title; this.pages = pages; }` (Correct)
+- **Question 2**: Why would you design a class to have getters but omit setters? What architectural benefit does this provide?
+  - *Student Answer*: If fields are immutable, you don't need setters. The benefit is knowing fields cannot be modified from outside the class. (Correct)
+
+#### Post-Quiz
+- **Question 1**: What compilation error occurs if you declare a method as `public void getName()` but include the statement `return name;` in its body?
+  - *Student Answer*: A return type mismatch occurs because the method is defined as void but attempts to return a value. (Correct)
+- **Question 2**: If we try to read the course name from another class using `course.name`, what compilation error will be thrown by the compiler, and why?
+  - *Student Answer*: A compilation error occurs because the field is private and cannot be accessed directly from outside the class. (Correct)
+
+---
 
 ---
 
