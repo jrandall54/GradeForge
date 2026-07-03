@@ -40,6 +40,25 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: Locate the generated test reports in your file system. What is the path to the HTML test report file that you can open in a web browser to review test status?
   - *Student Answer*: `build/reports/tests/test/index.html` (Correct)
 
+### Commit 0.2 — Hello GradeForge — Console Output
+
+#### Concepts Taught
+- **Java Console Output Methods**: Diff between `print()` (keeps cursor on same line), `println()` (adds a newline), and `printf()` (formatted printing).
+- **Format Specifiers**: Placeholders like `%s` (String), `%d` (integer), `%f` (floating-point), and `%n` (system-appropriate newline). Precision control such as `%.1f` outputs a float/double to one decimal place.
+- **Escape Characters**: Characters like `\n` (newline), `\t` (tab), `\"` (double quote), and `\\` (backslash) within string literals.
+- **String Concatenation**: Combining values using the overloaded `+` operator.
+
+#### Pre-Quiz
+- **Question 1**: What is the difference in console cursor behavior after executing `System.out.print("Grade");` versus `System.out.println("Forge");`?
+  - *Student Answer*: `println` adds a newline character after it executes so the cursor would be on the next line and `print` leaves the cursor right after the end of the print statement. (Correct)
+- **Question 2**: Write a single line of Java code using `System.out.printf` to print a string variable named `appName` and a double variable named `version` in the format: `App: [appName] | Version: [version]` (followed by a newline).
+  - *Student Answer*: `System.out.printf("App: [%s] | Version: [%.2f]%n", appName, version);` (Correct)
+
+#### Post-Quiz
+- **Question 1**: In the `printf` statement, we used `%.1f`. What does the `.1` specify, and how would the output change if we used `%f` instead?
+  - *Student Answer*: `.1` specifies a float/double shown to the first decimal place. By default, `%f` prints with exactly six decimal places (e.g., `1.000000`). (Correct)
+- **Question 2**: When you run `./gradlew build`, Gradle executes a task that runs the main method of our class and captures its stdout inside the test suite. If we want to execute our program's main class directly from the command line after compilation, what is the standard Java command to do so?
+  - *Student Answer*: Running compiled class files requires compiling to the classpath (`-cp`) and running with the fully qualified class name: `java -cp build/classes/java/main gradeforge.App` (Alternatively, running the single source file directly: `java src/main/java/gradeforge/App.java`). (Correct)
 
 ---
 

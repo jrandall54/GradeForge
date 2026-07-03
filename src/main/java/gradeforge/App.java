@@ -10,6 +10,12 @@ package gradeforge;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Welcome to GradeForge!");
+        String appName = "GradeForge";
+        double version = 1.0;
+
+        System.out.println("=================================");
+        System.out.printf("  Welcome to the %s (v%.1f)%n", appName, version);
+        System.out.println("=================================");
+
     }
 }
