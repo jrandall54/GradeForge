@@ -11,8 +11,8 @@ class AppTest {
     void applicationHasMainMethod() {
         InputStream originalSystemIn = System.in;
         try {
-            // Simulate entering name, course, and letter grade "A"
-            String simulatedInput = "John Doe\nComputer Science\nA\n";
+            // Simulate: Name -> Course -> Credits -> Grade -> Sentinel Exit
+            String simulatedInput = "John Doe\nComputer Science\n4\nA\nexit\n";
             System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
             assertDoesNotThrow(() -> App.main(new String[] {}));

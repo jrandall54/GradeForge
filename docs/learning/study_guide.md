@@ -102,6 +102,27 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: What value does `gradePoints` receive if the user inputs `"B"`? What value does it receive if the user inputs `"E"`?
   - *Student Answer*: `"B"` results in `3.0`, and `"E"` results in `0.0` due to the `default` case. (Correct)
 
+### Commit 0.5 — Multi-Course GPA with Loops
+
+#### Concepts Taught
+- **Java Loop Structures**: Syntactical difference between pre-test loops (`while`, `for`) and post-test loops (`do-while` which executes at least once).
+- **Accumulator Variables**: Summing values over multiple loop iterations (e.g., `totalQualityPoints` and `totalCredits`).
+- **Sentinel Values**: Using a specific inputs (such as `"exit"`) to flag loop termination when the iteration count is unknown beforehand.
+- **Weighted GPA Calculation**: Calculating GPA as `sum(grade points * credits) / sum(credits)` to properly weigh course credits.
+- **IEEE 754 Division by Zero**: Understanding that dividing a floating-point number by zero yields `Infinity` (for non-zero numerators) or `NaN` (for `0.0 / 0.0`), whereas integer division by zero throws an `ArithmeticException`.
+
+#### Pre-Quiz
+- **Question 1**: Under what scenario would you choose to use a `do-while` loop instead of a standard `while` loop?
+  - *Student Answer*: In a scenario where you want the loop to run at least once. (Correct)
+- **Question 2**: In the context of user input processing, what is a "sentinel value," and why is it useful when the exact number of courses the user wants to enter is unknown?
+  - *Student Answer*: A sentinel value determines when a loop will end to prevent infinite looping. It's useful because the loop continues to run indefinitely until the condition is met, meaning you don't have to know the number of iterations beforehand. (Correct)
+
+#### Post-Quiz
+- **Question 1**: When evaluating the expression `totalQualityPoints / totalCredits`, `totalQualityPoints` is a `double` and `totalCredits` is an `int`. Why does Java perform floating-point division here and keep the decimal portion, rather than truncating it?
+  - *Student Answer*: When dividing two numbers and at least one is a `double` type, Java uses floating-point division via binary numeric promotion. (Correct)
+- **Question 2**: What value or exception is produced at runtime if `totalCredits` is `0` and we directly execute `double gpa = totalQualityPoints / totalCredits;` without the ternary check?
+  - *Student Answer*: Since `totalQualityPoints` is `0.0` and `totalCredits` is `0`, this evaluates to `0.0 / 0.0` (after promotion), which yields `Double.NaN`. (Correct)
+
 ---
 
 ## Phase 1: Object-Oriented Foundations — The Core Domain Model
