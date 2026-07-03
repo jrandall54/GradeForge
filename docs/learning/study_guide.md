@@ -143,6 +143,16 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: If the user enters a decimal number (like `3.5`) when prompted for credit hours, how does our program respond, and why?
   - *Student Answer*: `"3.5"` contains a decimal point and is not a valid integer. `sc.nextInt()` throws an `InputMismatchException` which triggers the `catch` block, prompting the user for input again. (Correct)
 
+### Phase 0 Summary — Environment & Java Basics
+
+#### Post-Quiz
+- **Question 1**: Explain the purpose of package declarations (such as `package gradeforge;`) at the top of Java source files, and how they relate to the folder structure of your project.
+  - *Student Answer*: Package declarations organize classes into namespace packages to prevent naming conflicts, and Java's package structure directly mirrors the physical folder paths (e.g., `src/main/java/gradeforge/`). (Correct)
+- **Question 2**: In Java, how does the runtime environment behave differently when encountering these three distinct situations: (a) integer divided by zero, (b) double divided by zero, and (c) `Scanner.nextInt()` reads a token containing non-numeric text?
+  - *Student Answer*: (a) Throws a `java.lang.ArithmeticException: / by zero`. (b) Evaluates to `Double.NaN` (if `0.0 / 0.0`) or `Double.INFINITY` (if non-zero double divided by zero). (c) Throws a `java.util.InputMismatchException`. (Correct)
+- **Question 3**: What is the primary benefit of maintaining automated tests alongside your codebase during development, and what did we have to configure in `AppTest` to run a console-interactive program automatically?
+  - *Student Answer*: Automated tests catch regression issues during development. We configured `System.setIn` with a `ByteArrayInputStream` containing simulated keystrokes to feed standard input programmatically. (Correct)
+
 ---
 
 ## Phase 1: Object-Oriented Foundations — The Core Domain Model
