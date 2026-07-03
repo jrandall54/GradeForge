@@ -33,4 +33,9 @@ public class Course {
         return letterGrade;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s (%d credits) - Grade: %s", name, creditHours, letterGrade);
+    }
+
 }

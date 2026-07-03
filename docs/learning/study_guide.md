@@ -178,7 +178,27 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: If we try to read the course name from another class using `course.name`, what compilation error will be thrown by the compiler, and why?
   - *Student Answer*: A compilation error occurs because the field is private and cannot be accessed directly from outside the class. (Correct)
 
----
+
+### Commit 1.2 — Add toString() to Course
+
+#### Concepts Taught
+- **Inheritance Root Class**: All Java classes implicitly inherit from `java.lang.Object`.
+- **Method Overriding**: Replacing a parent class's method behavior in a subclass.
+- **The Override Annotation**: Placing `@Override` above overridden methods to direct the compiler to enforce signature matching.
+- **String Formatting**: Using `String.format()` to build dynamic strings with format specifiers.
+- **Polymorphism / Dynamic Dispatch**: The JVM resolves calls to `toString()` dynamically at runtime based on the object's actual class, enabling `System.out.println(course)` to print our formatted string.
+
+#### Pre-Quiz
+- **Question 1**: What does the default `toString()` method return in Java, and why is this representation usually not desired?
+  - *Student Answer*: It returns the object's class name, an `@` symbol, and the hexadecimal hashcode. This isn't desired because developers prefer a readable representation of the object's fields. (Correct)
+- **Question 2**: If you attempt to override `toString()` but write `tostring()` instead, what difference does it make whether you wrote the `@Override` annotation above the method or not?
+  - *Student Answer*: Without the annotation, it compiles normally but acts as a separate method. With the annotation, the compiler flags the typo and halts compilation. (Correct)
+
+#### Post-Quiz
+- **Question 1**: When overriding an inherited method in Java, are you allowed to change its return type to an incompatible type? Why or why not?
+  - *Student Answer*: No. Java is strictly typed, and changing the return type to an incompatible type violates the contract defined in the superclass, resulting in a compile-time error. This preserves type safety. (Correct)
+- **Question 2**: What does Java do under the hood if you pass an object directly to `System.out.println(course);` without explicitly calling the `toString()` method?
+  - *Student Answer*: It calls `String.valueOf(course)`, which dynamically invokes our overridden `toString()` method, printing our custom formatted string. (Correct)
 
 ---
 
