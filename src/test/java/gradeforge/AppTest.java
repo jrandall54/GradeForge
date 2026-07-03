@@ -21,4 +21,24 @@ class AppTest {
             System.setIn(originalSystemIn);
         }
     }
+
+    @Test
+    void applicationHandlesInvalidInputs() {
+        InputStream originalSystemIn = System.in;
+        try {
+            // Simulate invalid inputs:
+            // Name: Jane Doe
+            // Course: Math
+            // Invalid Credits: "abc" (text) -> "-1" (negative) -> "3" (valid)
+            // Invalid Grade: "Z" -> "B" (valid)
+            // Sentinel Exit
+            String simulatedInput = "Jane Doe\nMath\nabc\n-1\n3\nZ\nB\nexit\n";
+            System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+
+            assertDoesNotThrow(() -> App.main(new String[] {}));
+        } finally {
+            // Restore original System.in
+            System.setIn(originalSystemIn);
+        }
+    }
 }

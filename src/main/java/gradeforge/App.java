@@ -1,6 +1,7 @@
 package gradeforge;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 /**
  * GradeForge — A Student Grade & Course Tracker.
@@ -27,10 +28,7 @@ public class App {
         System.out.print("Enter your name: ");
         String studentName = sc.nextLine();
 
-        boolean isRunning = true;
-
         while (true) {
-
             System.out.print("Enter course name (or type 'exit' to calculate GPA): ");
             String courseName = sc.nextLine();
 
@@ -38,38 +36,64 @@ public class App {
                 break;
             }
 
-            System.out.print("Enter credit hours: ");
-            int credits = sc.nextInt();
-            sc.nextLine();
+            int credits = 0;
+            boolean isValid = false;
 
-            System.out.print("Enter letter grade (A, B, C, D, F): ");
-            String letterGrade = sc.nextLine();
+            while (!isValid) {
+                System.out.print("Enter credit hours: ");
+                try {
+                    credits = sc.nextInt();
+                    sc.nextLine();
 
-            double gradePoints;
-            switch (letterGrade.toUpperCase()) {
-                case "A":
-                    gradePoints = 4.0;
+                    if (credits > 0) {
+                        isValid = true;
+                    }
+                    System.out.println("Credit hours must be a positive integer.");
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a valid integer for credit hours");
+                    sc.nextLine();
+                }
+            }
+
+            double gradePoints = 0.0;
+            String letterGrade = "";
+
+            while (true) {
+                System.out.print("Enter letter grade (A, B, C, D, F): ");
+                letterGrade = sc.nextLine();
+
+                isValid = true;
+                switch (letterGrade.toUpperCase()) {
+                    case "A":
+                        gradePoints = 4.0;
+                        break;
+                    case "B":
+                        gradePoints = 3.0;
+                        break;
+                    case "C":
+                        gradePoints = 2.0;
+                        break;
+                    case "D":
+                        gradePoints = 1.0;
+                        break;
+                    case "F":
+                        gradePoints = 0.0;
+                        break;
+                    default:
+                        System.out.println("Invalid grade entered. Please enter A, B, C, D, or F.");
+                        isValid = false;
+                        break;
+                }
+
+                if (isValid) {
                     break;
-                case "B":
-                    gradePoints = 3.0;
-                    break;
-                case "C":
-                    gradePoints = 2.0;
-                    break;
-                case "D":
-                    gradePoints = 1.0;
-                    break;
-                case "F":
-                    gradePoints = 0.0;
-                    break;
-                default:
-                    System.out.println("Invalid grade entered. Defaulting to 0.0 points.");
-                    gradePoints = 0.0;
-                    break;
+                }
             }
 
             totalQualityPoints += gradePoints * credits;
             totalCredits += credits;
+
         }
 
         double cumulativeGpa = totalCredits > 0 ? totalQualityPoints / totalCredits : 0.0;
