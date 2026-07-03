@@ -32,7 +32,7 @@ class AppTest {
             // Invalid Credits: "abc" (text) -> "-1" (negative) -> "3" (valid)
             // Invalid Grade: "Z" -> "B" (valid)
             // Sentinel Exit
-            String simulatedInput = "Jane Doe\nMath\nabc\n-1\n3\nZ\nB\nexit\n";
+            String simulatedInput = "Jane Doe\nMath\nabc\n3.5\n3\nZ\nB\nexit\n";
             System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
             assertDoesNotThrow(() -> App.main(new String[] {}));

@@ -47,8 +47,9 @@ public class App {
 
                     if (credits > 0) {
                         isValid = true;
+                    } else {
+                        System.out.println("Credit hours must be a positive integer.");
                     }
-                    System.out.println("Credit hours must be a positive integer.");
 
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter a valid integer for credit hours");

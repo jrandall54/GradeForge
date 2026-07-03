@@ -123,6 +123,26 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: What value or exception is produced at runtime if `totalCredits` is `0` and we directly execute `double gpa = totalQualityPoints / totalCredits;` without the ternary check?
   - *Student Answer*: Since `totalQualityPoints` is `0.0` and `totalCredits` is `0`, this evaluates to `0.0 / 0.0` (after promotion), which yields `Double.NaN`. (Correct)
 
+### Commit 0.6 — Input Validation
+
+#### Concepts Taught
+- **Input Validation**: Implementing defensive programming techniques to validate user inputs, preventing runtime exceptions and ensuring logical boundaries (e.g., positive credit values, valid letter grade ranges).
+- **Exception Handling with try-catch**: Wrapping execution blocks in a `try-catch` structure to intercept specific exceptions such as `java.util.InputMismatchException`.
+- **Scanner Buffer Recovery**: Discarding problematic inputs from the scanner buffer in a catch block (using `sc.nextLine()`) to avoid infinite loops when parsing fails.
+- **Normalizing Case and White Space**: Normalizing letter grade values and case using `.toUpperCase()` and `.trim()`.
+
+#### Pre-Quiz
+- **Question 1**: When `sc.nextInt()` fails and throws an `InputMismatchException`, why does the program enter an infinite loop if you try to read an integer again without calling `sc.nextLine()` or `sc.next()` first?
+  - *Student Answer*: It will enter an infinite loop because the invalid input remains in the buffer, causing subsequent reads to continuously attempt parsing the same invalid value. (Correct)
+- **Question 2**: If an exception is thrown on the second line inside a `try` block containing five lines of code, does the execution complete the remaining three lines of the `try` block before jumping to the `catch` block?
+  - *Student Answer*: No, execution stops immediately at the line throwing the exception and transfers directly to the catch block. (Correct)
+
+#### Post-Quiz
+- **Question 1**: In the credits input loop, why is it critical to execute `sc.nextLine();` inside the `catch` block? What happens if you omit it?
+  - *Student Answer*: If you don't call `sc.nextLine()`, the invalid input stays in the input buffer and triggers an infinite loop of exceptions. (Correct)
+- **Question 2**: If the user enters a decimal number (like `3.5`) when prompted for credit hours, how does our program respond, and why?
+  - *Student Answer*: `"3.5"` contains a decimal point and is not a valid integer. `sc.nextInt()` throws an `InputMismatchException` which triggers the `catch` block, prompting the user for input again. (Correct)
+
 ---
 
 ## Phase 1: Object-Oriented Foundations — The Core Domain Model
