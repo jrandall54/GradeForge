@@ -200,6 +200,26 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: What does Java do under the hood if you pass an object directly to `System.out.println(course);` without explicitly calling the `toString()` method?
   - *Student Answer*: It calls `String.valueOf(course)`, which dynamically invokes our overridden `toString()` method, printing our custom formatted string. (Correct)
 
+### Commit 1.3 — Create the Student Class
+
+#### Concepts Taught
+- **Multi-Class Domain Modeling**: Modeling unique, distinct entities (`Student` vs. `Course`) in separate files.
+- **Fail-Fast Constructor Validation**: Checking arguments inside the constructor before assigning fields to prevent creation of partially initialized or invalid objects.
+- **Exception Throwing**: Throwing standard Java runtime exceptions like `IllegalArgumentException` when parameters fail validation rules.
+- **Null Safety & Short-Circuit Evaluation**: Ordering checks like `name == null || name.isBlank()` to prevent a `NullPointerException` when calling methods on a null reference.
+
+#### Pre-Quiz
+- **Question 1**: When validating parameters inside a constructor, why is throwing an `IllegalArgumentException` preferred over simply printing an error message like `System.out.println("Error!")` and continuing?
+  - *Student Answer*: Throwing an exception is "loud" as it stops the program and brings attention to the issue, instead of quietly printing a message which allows for the bad argument to be passed. (Correct)
+- **Question 2**: In Java, what is the difference in behavior between checking `name.isEmpty()` versus checking `name.trim().isEmpty()` when validating a string parameter?
+  - *Student Answer*: `name.isEmpty()` only checks for an empty string `""`, while `name.trim().isEmpty()` trims whitespace first. A string with whitespace `" "` returns `false` on `isEmpty()`, but `true` on `trim().isEmpty()`. The `isBlank()` method does both of these. (Correct)
+
+#### Post-Quiz
+- **Question 1**: In the constructor check `if (name == null || name.isBlank())`, why is the order of these two checks critical? What would happen if we checked `if (name.isBlank() || name == null)` and passed `null` as the name argument?
+  - *Student Answer*: Checking for `null` first prevents calling a string method (`isBlank()`) on a null reference. If the order is reversed, passing `null` will throw a `NullPointerException` (NPE) instead of a handled validation error. (Correct)
+- **Question 2**: If we attempt to run the line `Student s = new Student("  ", "S123");`, what behavior occurs? Which block of code intercepts it, and what message is generated?
+  - *Student Answer*: An `IllegalArgumentException` is thrown from the `Student` constructor with the message `"Student name cannot be blank"`. (Correct)
+
 ---
 
 ## Phase 2: Collections & Data Management — Arrays to ArrayLists
