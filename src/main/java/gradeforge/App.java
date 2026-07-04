@@ -57,43 +57,24 @@ public class App {
                 }
             }
 
-            double gradePoints = 0.0;
             String letterGrade = "";
-
             while (true) {
                 System.out.print("Enter letter grade (A, B, C, D, F): ");
                 letterGrade = sc.nextLine();
 
-                isValid = true;
-                switch (letterGrade.toUpperCase()) {
-                    case "A":
-                        gradePoints = 4.0;
+                String upperGrade = letterGrade.toUpperCase();
+                if (upperGrade.equals("A") || upperGrade.equals("B") ||
+                    upperGrade.equals("C") || upperGrade.equals("D") ||
+                    upperGrade.equals("F")) {
                         break;
-                    case "B":
-                        gradePoints = 3.0;
-                        break;
-                    case "C":
-                        gradePoints = 2.0;
-                        break;
-                    case "D":
-                        gradePoints = 1.0;
-                        break;
-                    case "F":
-                        gradePoints = 0.0;
-                        break;
-                    default:
-                        System.out.println("Invalid grade entered. Please enter A, B, C, D, or F.");
-                        isValid = false;
-                        break;
-                }
-
-                if (isValid) {
-                    break;
-                }
+                    }
+                System.out.println("Invalid grade entered. Please enter A, B, C, D, or F.");
             }
 
-            totalQualityPoints += gradePoints * credits;
-            totalCredits += credits;
+            Course c = new Course(courseName, credits, letterGrade);
+
+            totalQualityPoints += c.getGradePoints() * c.getCreditHours();
+            totalCredits += c.getCreditHours();
 
         }
 

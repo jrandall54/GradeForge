@@ -220,6 +220,26 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: If we attempt to run the line `Student s = new Student("  ", "S123");`, what behavior occurs? Which block of code intercepts it, and what message is generated?
   - *Student Answer*: An `IllegalArgumentException` is thrown from the `Student` constructor with the message `"Student name cannot be blank"`. (Correct)
 
+### Commit 1.4 — Grade Point Conversion as a Method
+
+#### Concepts Taught
+- **Encapsulation of Business Logic**: Moving calculation logic (such as converting grades to points) from the user interface (`App.java`) into the corresponding domain class (`Course.java`).
+- **Domain Object Instantiation**: Creating instance objects within control loops to manage data and encapsulate related operations.
+- **Instance Methods**: Declaring non-static methods that operate on the specific state of an object instance via implicit reference access.
+- **Type Safety and Null References**: Understanding that executing instance methods on a `null` reference throws a `NullPointerException` at the invocation site.
+
+#### Pre-Quiz
+- **Question 1**: In object-oriented software design, what is the architectural benefit of encapsulating the letter-grade-to-points translation inside the `Course` class instead of leaving it in the `App.java` user interface?
+  - *Student Answer*: It results in a cleaner implementation that supports DRY and isolates domain calculations in a single place. (Correct)
+- **Question 2**: When writing an instance method (like `getGradePoints()`) inside `Course`, what keyword is omitted from the method signature compared to a class-level utility method (like `main`), and how does the method access the object's instance fields?
+  - *Student Answer*: `static` is omitted from the signature. The method accesses its own fields directly by name or by using the `this` keyword. (Correct)
+
+#### Post-Quiz
+- **Question 1**: If we decide to support a new grading scale (e.g. adding `"A+"` worth `4.3` points), in which file(s) must we change the grade-to-points mapping logic? How does this demonstrate the benefit of encapsulation?
+  - *Student Answer*: Only the body of `getGradePoints()` in `Course.java` needs to change. This ensures modifications are localized, preventing duplicate edits across multiple files. (Correct)
+- **Question 2**: If we declare `Course course = null;` and then attempt to execute `course.getGradePoints();`, what runtime error will occur, and why?
+  - *Student Answer*: A `NullPointerException` (NPE) is thrown at the invocation site because we are attempting to call an instance method on a reference that points to nothing (`null`). (Correct)
+
 ---
 
 ## Phase 2: Collections & Data Management — Arrays to ArrayLists
