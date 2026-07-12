@@ -240,6 +240,50 @@ Entries are organized chronologically by Phase and Commit. You can review this d
 - **Question 2**: If we declare `Course course = null;` and then attempt to execute `course.getGradePoints();`, what runtime error will occur, and why?
   - *Student Answer*: A `NullPointerException` (NPE) is thrown at the invocation site because we are attempting to call an instance method on a reference that points to nothing (`null`). (Correct)
 
+### Commit 1.5 — Static Utility Method: GradeUtils
+
+#### Concepts Taught
+- **Static Keyword**: Declaring members (fields/methods) that belong to the class template rather than instances.
+- **Utility Class Pattern**: Designing stateless helper classes as `final` with `private` constructors to prevent instantiation and subclassing.
+- **Stateless Methods**: Using `static` for methods whose results depend purely on parameters and do not interact with instance state.
+- **Compile-Time vs. Runtime Errors**: Differentiating compiler access control blocks (such as private constructor errors) from runtime exceptions (such as `UnsupportedOperationException`).
+
+#### Pre-Quiz
+- **Question 1**: What is the purpose of declaring a private constructor inside a utility class, and what happens if a developer attempts to call `new GradeUtils()` in their code?
+  - *Student Answer*: It prevents outside classes from instantiating it. Attempting to call `new GradeUtils()` outside the class results in a compile-time error. (Correct)
+- **Question 2**: If a method inside a class does not use the `this` keyword or access any instance fields, should it be declared `static`? Why or why not?
+  - *Student Answer*: Yes, because it belongs to the class template itself rather than any specific object instance. (Correct)
+
+#### Post-Quiz
+- **Question 1**: In `GradeUtils`, we throw an `IllegalArgumentException` in `toGradePoints(String grade)` if the grade is invalid. Why is it safe to throw this exception here, and what method should callers invoke beforehand if they want to check validity without risking an exception?
+  - *Student Answer*: Callers should call `isValidGrade()` beforehand to check validity. Throwing an exception is safe because an invalid grade violates the API contract (precondition) and prevents returning a misleading numeric double value. (Correct)
+- **Question 2**: If you try to compile code that contains the statement `GradeUtils myUtils = new GradeUtils();` what error is printed by the compiler, and why?
+  - *Student Answer*: A compile-time error occurs stating that the constructor has private access in `GradeUtils`, blocking compilation. (Correct)
+
+---
+
+### Commit 1.6 — Reference vs. Value Semantics Demo
+
+#### Concepts Taught
+- **Memory Management**: The LIFO Stack holds local primitives and object reference addresses, while the Heap stores dynamically allocated objects.
+- **Value Semantics**: Passing primitive values copies their bits; helper method changes are local and do not modify the caller's variables.
+- **Reference Semantics**: Passing objects copies their reference address. Mutating properties inside a method alters the shared object on the Heap.
+- **Reference Reassignment**: Reassigning a reference inside a method changes the local pointer on the Stack, leaving the caller's reference unchanged.
+- **Reference Aliasing**: Pointing multiple variables to the same heap address, where changes via one reference are visible to all.
+- **Identity vs. Equivalence**: `==` compares reference addresses. By default, `equals()` performs a reference check unless overridden in the class to compare field values.
+
+#### Pre-Quiz
+- **Question 1**: In Java memory management, what is the role of the Stack compared to the Heap? Which memory area stores local primitive variables, and which stores actual object instances?
+  - *Student Answer*: The Stack stores local primitives and execution frames, while the Heap is where object instances live. (Correct)
+- **Question 2**: What does `c1 == c2` evaluate to, and what does `c1.equals(c2)` evaluate to for separate instances with identical properties, assuming `Course` has not overridden the default `Object.equals()` method?
+  - *Student Answer*: Both evaluate to `false` because they are separate heap instances (different pointers) and `Object.equals()` defaults to a `==` reference comparison. (Correct)
+
+#### Post-Quiz
+- **Question 1**: If we later override the `equals()` method in `Course.java` to check that the course name, credits, and grade match, what would `c1.equals(c2)` evaluate to? What would `c1 == c2` evaluate to?
+  - *Student Answer*: `c1.equals(c2)` would evaluate to `true` (since we explicitly compare field values), and `c1 == c2` would evaluate to `false` (since they are separate objects on the heap). (Correct)
+- **Question 2**: In the `testReferenceReassignment` test, when `reassignReference(course)` executes the line `course = new MutableCourse("Science");`, why is the caller's variable `course` outside the method completely unaffected by this reassignment?
+  - *Student Answer*: Java passes references by value. Reassigning `course` inside the method only changes the local stack copy of the reference to point to a new object, leaving the original variable outside pointing to the original heap object. (Correct)
+
 ---
 
 ## Phase 2: Collections & Data Management — Arrays to ArrayLists
