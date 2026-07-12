@@ -63,9 +63,7 @@ public class App {
                 letterGrade = sc.nextLine();
 
                 String upperGrade = letterGrade.toUpperCase();
-                if (upperGrade.equals("A") || upperGrade.equals("B") ||
-                    upperGrade.equals("C") || upperGrade.equals("D") ||
-                    upperGrade.equals("F")) {
+                if (GradeUtils.isValidGrade(upperGrade)) {
                         break;
                     }
                 System.out.println("Invalid grade entered. Please enter A, B, C, D, or F.");

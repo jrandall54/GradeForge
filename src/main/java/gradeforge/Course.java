@@ -16,9 +16,18 @@ public class Course {
      * @param letterGrade.    the letter grade earned (A, B, C, D, F)
      */
     public Course(String name, int creditHours, String letterGrade) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Course name cannot be null or empty.");
+        }
+        if (creditHours < 1) {
+            throw new IllegalArgumentException("Credit hours must be 1 or highter. Got: " + creditHours);
+        }
+        if (!GradeUtils.isValidGrade(letterGrade)) {
+            throw new IllegalArgumentException("Invalid letter grade: " + letterGrade);
+        }
         this.name = name;
         this.creditHours = creditHours;
-        this.letterGrade = letterGrade;
+        this.letterGrade = letterGrade.trim().toUpperCase();
     }
 
     public String getName() {
@@ -38,24 +47,7 @@ public class Course {
      * @return the numeric grade points (A = 4.0, B = 3.0, C = 2.0, D = 1.0, F = 0.0)
      */
     public double getGradePoints() {
-        if (letterGrade == null) {
-            return 0.0;
-        }
-
-        switch (letterGrade.toUpperCase()) {
-            case "A":
-                return 4.0;
-            case "B":
-                return 3.0;
-            case "C":
-                return 2.0;
-            case "D":
-                return 1.0;
-            case "F":
-                return 0.0;
-            default:
-                return 0.0;
-        }
+        return GradeUtils.toGradePoints(letterGrade);
     }
 
     @Override
